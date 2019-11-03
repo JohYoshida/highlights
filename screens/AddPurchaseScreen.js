@@ -1,19 +1,31 @@
 import React from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Picker, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import ActionButton from "react-native-action-button";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function AddPurchaseScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Add Purchase</Text>
-    </View>
-  );
-}
+export default class AddPurchaseScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Add Purchase',
+    tabBarVisible: false
+  };
 
-AddPurchaseScreen.navigationOptions = {
-  title: 'AddPurchase',
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+      strain: "",
+      producer: "",
+      type: ""
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Strain</Text>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

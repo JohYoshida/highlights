@@ -3,17 +3,26 @@ import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-nat
 import ActionButton from "react-native-action-button";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function AddSessionScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Add Session</Text>
-    </View>
-  );
-}
+export default class AddSessionScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Add Session',
+    tabBarVisible: false
+  };
 
-AddSessionScreen.navigationOptions = {
-  title: 'AddSession',
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Add Session</Text>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

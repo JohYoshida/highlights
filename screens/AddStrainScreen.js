@@ -3,17 +3,26 @@ import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-nat
 import ActionButton from "react-native-action-button";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function AddStrainScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Add Strain</Text>
-    </View>
-  );
-}
+export default class AddStrainScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Add Strain',
+    tabBarVisible: false
+  };
 
-AddStrainScreen.navigationOptions = {
-  title: 'AddStrain',
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Add Strain</Text>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
