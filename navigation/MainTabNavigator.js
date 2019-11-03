@@ -2,75 +2,103 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
+// Import components
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+// Import StrainStack screens
+import StrainScreen from '../screens/StrainScreen';
+import AddStrainScreen from '../screens/AddStrainScreen';
+// Import PurchaseStack screens
+import PurchaseScreen from '../screens/PurchaseScreen';
+import AddPurchaseScreen from '../screens/AddPurchaseScreen';
+// Import SessionStack screens
+import SessionScreen from '../screens/SessionScreen';
+import AddSessionScreen from '../screens/AddSessionScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const HomeStack = createStackNavigator(
+// StrainStack
+const StrainStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Strain: StrainScreen,
+    AddStrain: AddStrainScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+StrainStack.navigationOptions = {
+  tabBarLabel: 'Strain',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-leaf${focused ? '' : '-outline'}`
+          : 'md-leaf'
       }
     />
   ),
 };
 
-HomeStack.path = '';
+StrainStack.path = '';
 
-const LinksStack = createStackNavigator(
+// PurchaseStack
+const PurchaseStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Purchase: PurchaseScreen,
+    AddPurchase: AddPurchaseScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+PurchaseStack.navigationOptions = {
+  tabBarLabel: 'Strain',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-cube${focused ? '' : '-outline'}`
+          : 'md-cube'
+      }
+    />
   ),
 };
 
-LinksStack.path = '';
+PurchaseStack.path = '';
 
-const SettingsStack = createStackNavigator(
+// SessionStack
+const SessionStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Session: SessionScreen,
+    AddSession: AddSessionScreen,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+SessionStack.navigationOptions = {
+  tabBarLabel: 'Session',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-cloud-outline${focused ? '' : '-outline'}`
+          : 'md-cloud-outline'
+      }
+    />
   ),
 };
 
-SettingsStack.path = '';
+SessionStack.path = '';
 
+// Make export object
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  SessionStack,
+  StrainStack,
+  PurchaseStack,
 });
 
 tabNavigator.path = '';
