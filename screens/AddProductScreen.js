@@ -3,7 +3,7 @@ import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-nat
 import ActionButton from "react-native-action-button";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default class AddStrainScreen extends React.Component {
+export default class AddProductScreen extends React.Component {
   static navigationOptions = {
     title: 'Add Strain',
     tabBarVisible: false

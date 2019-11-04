@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import ActionButton from "react-native-action-button";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default class StrainScreen extends React.Component {
+export default class ProductScreen extends React.Component {
   static navigationOptions = {
     header: null,
     title: "Strain"
