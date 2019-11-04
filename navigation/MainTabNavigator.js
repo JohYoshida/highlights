@@ -4,9 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 // Import components
 import TabBarIcon from '../components/TabBarIcon';
-// Import StrainStack screens
-import StrainScreen from '../screens/StrainScreen';
-import AddStrainScreen from '../screens/AddStrainScreen';
+// Import ProductStack screens
+import ProductScreen from '../screens/ProductScreen';
+import AddProductScreen from '../screens/AddProductScreen';
 // Import PurchaseStack screens
 import PurchaseScreen from '../screens/PurchaseScreen';
 import AddPurchaseScreen from '../screens/AddPurchaseScreen';
@@ -19,17 +19,17 @@ const config = Platform.select({
   default: {},
 });
 
-// StrainStack
-const StrainStack = createStackNavigator(
+// ProductStack
+const ProductStack = createStackNavigator(
   {
-    Strain: StrainScreen,
-    AddStrain: AddStrainScreen,
+    Product: ProductScreen,
+    AddProduct: AddProductScreen,
   },
   config
 );
 
-StrainStack.navigationOptions = {
-  tabBarLabel: 'Strain',
+ProductStack.navigationOptions = {
+  tabBarLabel: 'Product',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -42,7 +42,7 @@ StrainStack.navigationOptions = {
   ),
 };
 
-StrainStack.path = '';
+ProductStack.path = '';
 
 // PurchaseStack
 const PurchaseStack = createStackNavigator(
@@ -54,7 +54,7 @@ const PurchaseStack = createStackNavigator(
 );
 
 PurchaseStack.navigationOptions = {
-  tabBarLabel: 'Strain',
+  tabBarLabel: 'Purchase',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -97,7 +97,7 @@ SessionStack.path = '';
 // Make export object
 const tabNavigator = createBottomTabNavigator({
   SessionStack,
-  StrainStack,
+  ProductStack,
   PurchaseStack,
 });
 
