@@ -44,7 +44,7 @@ export default class AddSessionScreen extends React.Component {
           <Picker.Item label="Sativa" value="Sativa" key="Sativa" />
           <Picker.Item label="Hybrid" value="Hybrid" key="Hybrid" />
         </Picker>
-        <Button title="Add Product" onPress={this.post.bind(this)} />
+        <Button title="Add Strain" onPress={this.post.bind(this)} />
       </View>
     );
   }
