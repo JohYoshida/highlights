@@ -48,7 +48,7 @@ export default class AddProducerScreen extends React.Component {
         this.props.navigation.goBack();
       })
       .catch(err => {
-        console.log("Error\n", err);
+        console.log("Error:\n", err);
         this.props.navigation.goBack();
       });
   }
