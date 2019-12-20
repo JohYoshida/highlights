@@ -1,18 +1,16 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import ActionButton from "react-native-action-button";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Ionicons";
 
 export default class SessionScreen extends React.Component {
   static navigationOptions = {
-    header: null,
-    title: "Session"
+    header: null
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -33,6 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
-  },
+    backgroundColor: "#fff"
+  }
 });
