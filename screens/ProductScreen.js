@@ -1,18 +1,16 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import ActionButton from "react-native-action-button";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Ionicons";
 
 export default class ProductScreen extends React.Component {
   static navigationOptions = {
-    header: null,
-    title: "Strain"
+    header: null
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -21,7 +19,7 @@ export default class ProductScreen extends React.Component {
         <ActionButton
           buttonColor="rgba(231,76,60,1)"
           onPress={() => {
-            this.props.navigation.navigate("AddStrain");
+            this.props.navigation.navigate("AddProduct");
           }}
         />
       </View>
@@ -33,6 +31,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: "white"
+  }
 });
