@@ -19,10 +19,7 @@ export default class AddSessionScreen extends React.Component {
   }
 
   render() {
-    const {
-      products,
-      purchases,
-    } = this.props.navigation.state.params;
+    const { products, purchases } = this.props.navigation.state.params;
     // Make picker items
     const Purchases = [];
     purchases.forEach(purchase => {
