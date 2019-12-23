@@ -73,8 +73,15 @@ export default class AddProductScreen extends React.Component {
 
   post() {
     const { producer_id, strain_id } = this.state;
-    console.log(producer_id, strain_id);
-    fetch(`${URL}/products/${producer_id}/${strain_id}`, {
+    const { producers, strains } = this.props.navigation.state.params;
+    let name;
+    producers.forEach(producer => {
+      if (producer_id === producer.id) name = producer.name + " ";
+    });
+    strains.forEach(strains => {
+      if (strain_id === strains.id) name += strains.name;
+    });
+    fetch(`${URL}/products/${producer_id}/${strain_id}/${name}`, {
       method: "POST"
     })
       .then(res => res.json())
