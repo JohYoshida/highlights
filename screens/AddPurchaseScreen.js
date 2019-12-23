@@ -45,7 +45,7 @@ export default class AddPurchaseScreen extends React.Component {
       <View style={styles.container}>
         <Text>Strain</Text>
         <Picker
-          selectedValue={this.state.strain}
+          selectedValue={strains[0].id || this.state.strain}
           style={{ height: 50, width: 100 }}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({ strain: itemValue })
@@ -56,7 +56,7 @@ export default class AddPurchaseScreen extends React.Component {
 
         <Text>Producer</Text>
         <Picker
-          selectedValue={this.state.producer}
+          selectedValue={producers[0].id || this.state.producer}
           style={{ height: 50, width: 100 }}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({ producer: itemValue })
