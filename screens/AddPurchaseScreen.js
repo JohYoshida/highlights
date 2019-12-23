@@ -123,8 +123,8 @@ export default class AddPurchaseScreen extends React.Component {
   }
 
   post() {
-    const { producer, strain } = this.state;
-    const { producers, products, strains } = this.props.navigation.state.params;
+    const { producer, strain, amount, size, moisture, density } = this.state;
+    const { products } = this.props.navigation.state.params;
     let product_id;
     products.forEach(item => {
       if (item.producer_id === producer) {
@@ -134,7 +134,12 @@ export default class AddPurchaseScreen extends React.Component {
       }
     });
     fetch(`${URL}/purchases/${product_id}`, {
-      method: "POST"
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ amount, size, moisture, density })
     })
       .then(res => res.json())
       .then(json => {
