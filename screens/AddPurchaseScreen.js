@@ -14,10 +14,10 @@ export default class AddPurchaseScreen extends React.Component {
     this.state = {
       strain: "",
       producer: "",
-      amount: "",
-      size: "",
-      moisture: "",
-      density: ""
+      amount: "1g",
+      size: "medium",
+      moisture: "average",
+      density: "average"
     };
   }
 
