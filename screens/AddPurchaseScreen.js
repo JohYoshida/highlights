@@ -125,15 +125,15 @@ export default class AddPurchaseScreen extends React.Component {
   post() {
     const { producer, strain } = this.state;
     const { producers, products, strains } = this.props.navigation.state.params;
-    let product;
+    let product_id;
     products.forEach(item => {
       if (item.producer_id === producer) {
         if (item.strain_id === strain) {
-          product = item.id;
+          product_id = item.id;
         }
       }
     });
-    fetch(`${URL}/purchases/${product}`, {
+    fetch(`${URL}/purchases/${product_id}`, {
       method: "POST"
     })
       .then(res => res.json())
