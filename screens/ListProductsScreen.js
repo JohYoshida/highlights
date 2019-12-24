@@ -52,7 +52,8 @@ export default class ListProductsScreen extends React.Component {
   refresh = () => {
     this.setState({ refreshing: true }, () => {
       this.props.navigation.state.params.refreshData().then(data => {
-        this.setState({ refreshing: false, products: data });
+        const { products, producers, strains } = data;
+        this.setState({ refreshing: false, products, producers, strains });
       });
     });
   };
