@@ -11,8 +11,11 @@ export default class ListProductsScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    const { products, producers, strains } = this.props.navigation.state.params;
     this.state = {
-      products: this.props.navigation.state.params.products,
+      products,
+      producers,
+      strains,
       refreshing: false
     };
   }
