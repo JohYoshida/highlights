@@ -27,7 +27,7 @@ export default class AddSessionScreen extends React.Component {
     // const product = purchases.find(({ id }) => id === purchase_id);
     purchases.forEach(purchase => {
       let time = moment(purchase.createdAt).format("MMM D YYYY");
-      let product = products.find(({ id }) => id === purchase.product_id)
+      let product = products.find(({ id }) => id === purchase.product_id);
       let name = product.name;
       Purchases.push({
         label: time + " - " + name,
