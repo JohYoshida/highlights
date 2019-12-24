@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { AirbnbRating, ListItem } from "react-native-elements";
 
 const moment = require("moment");
 
@@ -14,26 +15,44 @@ export default class ListSessionsScreen extends React.Component {
   }
 
   render() {
+    const {
+      sessions,
+      purchases,
+      products
+    } = this.props.navigation.state.params;
+    sessions.forEach(session => {
+      products.forEach(product => {
+        if (session.product_id === product.id) session.strain = product.name;
+      });
+    });
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={this.props.navigation.state.params.sessions}
-          renderItem={({ item }) => <Item item={item} />}
-          keyExtractor={item => item.id}
+          data={sessions}
+          renderItem={this.renderItem}
+          keyExtractor={(item, index) => index.toString()}
         />
       </ScrollView>
     );
   }
-}
 
-function Item({ item }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{item.rating}</Text>
-      <Text style={styles.title}>
-        {moment(item.createAt).format("MMM D YYYY")}
-      </Text>
-    </View>
+  renderItem = ({ item }) => (
+    <ListItem
+      title={item.strain}
+      subtitle={
+        <View style={styles.iconContainer}>
+          <Text>{moment(item.createAt).format("MMM D YYYY h:mma")}</Text>
+          <AirbnbRating
+            startingValue={item.rating}
+            readonly
+            showRating={false}
+            size={12}
+          />
+        </View>
+      }
+      bottomDivider
+      chevron
+    />
   );
 }
 
@@ -43,10 +62,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: "#fff"
   },
-  item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16
+  iconContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   title: {
     fontSize: 15

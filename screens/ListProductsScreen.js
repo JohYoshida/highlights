@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ListItem } from "react-native-elements";
 
 export default class ListProductsScreen extends React.Component {
   static navigationOptions = {
@@ -16,19 +17,15 @@ export default class ListProductsScreen extends React.Component {
       <ScrollView style={styles.container}>
         <FlatList
           data={this.props.navigation.state.params.products}
-          renderItem={({ item }) => <Item name={item.name} />}
-          keyExtractor={item => item.id}
+          renderItem={this.renderItem}
+          keyExtractor={(item, index) => index.toString()}
         />
       </ScrollView>
     );
   }
-}
 
-function Item({ name }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{name}</Text>
-    </View>
+  renderItem = ({ item }) => (
+    <ListItem title={item.name} bottomDivider chevron />
   );
 }
 
@@ -37,13 +34,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     backgroundColor: "#fff"
-  },
-  item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16
-  },
-  title: {
-    fontSize: 15
   }
 });

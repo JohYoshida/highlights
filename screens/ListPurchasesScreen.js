@@ -1,5 +1,7 @@
 import React from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ListItem } from "react-native-elements";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const moment = require("moment");
 
@@ -14,29 +16,55 @@ export default class ListPurchasesScreen extends React.Component {
   }
 
   render() {
+    const { purchases, products } = this.props.navigation.state.params;
+    // Cross-reference name
+    purchases.forEach(purchase => {
+      products.forEach(product => {
+        if (purchase.product_id === product.id) purchase.name = product.name;
+      });
+    });
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={this.props.navigation.state.params.purchases}
-          renderItem={({ item }) => <Item item={item} />}
-          keyExtractor={item => item.id}
+          data={purchases}
+          renderItem={this.renderItem}
+          keyExtractor={(item, index) => index.toString()}
         />
       </ScrollView>
     );
   }
-}
 
-function Item({ item }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{item.moisture}</Text>
-      <Text style={styles.title}>{item.density}</Text>
-      <Text style={styles.title}>{item.size}</Text>
-      <Text style={styles.title}>{item.amount}</Text>
-      <Text style={styles.title}>
-        {moment(item.createdAt).format("MMM D YYYY")}
-      </Text>
-    </View>
+  renderItem = ({ item }) => (
+    <ListItem
+      bottomDivider
+      title={item.name}
+      subtitle={
+        <View style={styles.item}>
+          <View style={styles.iconContainer}>
+            <Icon name="md-time" color="#000" size={12} />
+            <Text style={styles.text}>
+              {moment(item.createdAt).format("MMM D YYYY")}
+            </Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Icon name="md-add-circle" color="#23aa13" size={12} />
+            <Text style={styles.text}>{item.amount}</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Icon name="md-water" color="#6ab5c9" size={12} />
+            <Text style={styles.text}>{item.moisture}</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Icon name="md-square" color="#000" size={12} />
+            <Text style={styles.text}>{item.density}</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Icon name="md-resize" color="#000" size={12} />
+            <Text style={styles.text}>{item.size}</Text>
+          </View>
+        </View>
+      }
+    />
   );
 }
 
@@ -47,11 +75,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
-  title: {
-    fontSize: 15
+  text: {},
+  iconContainer: {
+    flex: 1,
+    alignItems: "center",
+    textAlign: "center"
   }
 });
