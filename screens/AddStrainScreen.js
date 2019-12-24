@@ -1,13 +1,14 @@
 import React from "react";
 import {
-  Button,
-  Picker,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View
 } from "react-native";
+import { Button, ButtonGroup, Input } from 'react-native-elements'
+import { Dropdown } from "react-native-material-dropdown"
+
 
 const { URL } = require("../constants/EnvironmentVariables");
 
@@ -20,37 +21,43 @@ export default class AddSessionScreen extends React.Component {
     super(props);
     this.state = {
       name: "",
-      type: ""
+      type: -1
     };
   }
 
   render() {
+    const component1 = () => <Text>Indica</Text>;
+    const component2 = () => <Text>Hybrid</Text>;
+    const component3 = () => <Text>Sativa</Text>;
+    const buttons = [
+      { element: component1 },
+      { element: component2 },
+      { element: component3 }
+    ];
     return (
       <View style={styles.container}>
-        <Text>Name</Text>
-        <TextInput
+        <Input
+          label="Name"
           placeholder="Purple Kush"
+          containerStyle={styles.input}
           onChangeText={name => this.setState({ name })}
         />
-        <Text>Type</Text>
-        <Picker
-          selectedValue={this.state.type}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ type: itemValue })
-          }
-        >
-          <Picker.Item label="Indica" value="Indica" key="Indica" />
-          <Picker.Item label="Sativa" value="Sativa" key="Sativa" />
-          <Picker.Item label="Hybrid" value="Hybrid" key="Hybrid" />
-        </Picker>
+        <ButtonGroup
+          onPress={type => this.setState({ type })}
+          selectedIndex={this.state.type}
+          containerStyle={styles.buttonGroup}
+          buttons={buttons}
+        />
         <Button title="Add Strain" onPress={this.post.bind(this)} />
       </View>
     );
   }
 
   post() {
-    const { type, name } = this.state;
+    let { type, name } = this.state;
+    if (type === 0) type = "Indica";
+    if (type === 1) type = "Hybrid";
+    if (type === 2) type = "Sativa";
     fetch(`${URL}/strains/${type}/${name}`, {
       method: "POST"
     })
@@ -72,5 +79,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 15,
     backgroundColor: "#fff"
+  },
+  input: {
+    width: "80%"
+  },
+  buttonGroup: {
+    width: "80%"
   }
 });

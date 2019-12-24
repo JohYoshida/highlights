@@ -1,5 +1,7 @@
 import React from "react";
-import { Button, Picker, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Button, AirbnbRating } from 'react-native-elements'
+import { Dropdown } from "react-native-material-dropdown"
 
 const { URL } = require("../constants/EnvironmentVariables");
 const moment = require("moment");
@@ -28,40 +30,30 @@ export default class AddSessionScreen extends React.Component {
       products.forEach(product => {
         if (product.id === purchase.product_id) name = product.name;
       });
-      Purchases.push(
-        <Picker.Item
-          label={time + " - " + name}
-          value={purchase.id}
-          key={purchase.id}
-        />
-      );
+      Purchases.push({
+        label: time + " - " + name,
+        value: purchase.id
+      });
     });
     return (
       <View style={styles.container}>
-        <Text>Product</Text>
-        <Picker
-          selectedValue={this.state.purchase}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ purchase: itemValue })
-          }
-        >
-          {Purchases}
-        </Picker>
-
-        <Text>Rating</Text>
-        <Picker
-          selectedValue={this.state.rating}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ rating: itemValue })
-          }
-        >
-          <Picker.Item label="-" value="-1" />
-          <Picker.Item label="=" value="0" />
-          <Picker.Item label="+" value="+1" />
-        </Picker>
-
+        <Dropdown
+          label="Product"
+          data={Purchases}
+          value={this.state.purchase}
+          containerStyle={styles.dropdown}
+          onChangeText={(value)=> {
+            this.setState({ purchase: value });
+          }}
+        />
+        <AirbnbRating
+          startingValue={3}
+          showRating={false}
+          onFinishRating={rating => {
+            console.log(rating);
+            this.setState({ rating })
+          }}
+        />
         <Button title="Add Purchase" onPress={this.post.bind(this)} />
       </View>
     );
@@ -91,5 +83,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 15,
     backgroundColor: "#fff"
+  },
+  dropdown: {
+    width: "80%"
   }
 });

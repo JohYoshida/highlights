@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  Button,
   Picker,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View
 } from "react-native";
+import { Button, Input } from 'react-native-elements'
+import { Dropdown } from "react-native-material-dropdown"
 
 const { URL } = require("../constants/EnvironmentVariables");
 
@@ -29,43 +29,36 @@ export default class AddProductScreen extends React.Component {
     const { producers, strains } = this.props.navigation.state.params;
     const Producers = [];
     producers.forEach(item => {
-      Producers.push(
-        <Picker.Item label={item.name} value={item.id} key={item.id} />
-      );
+      Producers.push({ label: item.name, value: item.id });
     });
     const Strains = [];
     strains.forEach(item => {
-      Strains.push(
-        <Picker.Item
-          label={item.name + " - " + item.type}
-          value={item.id}
-          key={item.id}
-        />
-      );
+      Strains.push({
+        label: item.name + " - " + item.type,
+        value: item.id
+      });
     });
 
     return (
       <View style={styles.container}>
-        <Text>Producer</Text>
-        <Picker
-          selectedValue={producers[0].id || this.state.producer_id}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ producer_id: itemValue })
-          }
-        >
-          {Producers}
-        </Picker>
-        <Text>Strain</Text>
-        <Picker
-          selectedValue={producers[0].id || this.state.strain_id}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ strain_id: itemValue })
-          }
-        >
-          {Strains}
-        </Picker>
+        <Dropdown
+          label="Producer"
+          data={Producers}
+          value={this.state.producer_id}
+          containerStyle={styles.dropdown}
+          onChangeText={(value)=> {
+            this.setState({ producer_id: value });
+          }}
+        />
+        <Dropdown
+          label="Strain"
+          data={Strains}
+          value={this.state.strain_id}
+          containerStyle={styles.dropdown}
+          onChangeText={(value)=> {
+            this.setState({ strain_id: value });
+          }}
+        />
         <Button title="Add Product" onPress={this.post.bind(this)} />
       </View>
     );
@@ -103,5 +96,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 15,
     backgroundColor: "#fff"
+  },
+  dropdown: {
+    width: "80%",
   }
 });

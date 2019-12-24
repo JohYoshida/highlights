@@ -1,13 +1,12 @@
 import React from "react";
 import {
-  Button,
   Picker,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View
 } from "react-native";
+import { Button, Input } from 'react-native-elements'
 
 const { URL } = require("../constants/EnvironmentVariables");
 
@@ -27,8 +26,9 @@ export default class AddProducerScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Producer</Text>
-        <TextInput
+        <Input
+          containerStyle={styles.input}
+          label="Producer"
           placeholder="Aurora"
           onChangeText={producer => this.setState({ producer })}
         />
@@ -60,5 +60,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 15,
     backgroundColor: "#fff"
+  },
+  input: {
+    width: "80%"
   }
 });
