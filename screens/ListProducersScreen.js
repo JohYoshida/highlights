@@ -27,14 +27,16 @@ export default class ListProducersScreen extends React.Component {
             keyExtractor={(item, index) => index.toString()}
             onRefresh={this.refresh}
             refreshing={this.state.refreshing}
-            />
+          />
         </ScrollView>
         <ActionButton
           buttonColor="#e74c3c"
-          onPress={() => this.props.navigation.navigate("AddProducer", {
-            refreshData: this.refresh
-          })}
-          >
+          onPress={() =>
+            this.props.navigation.navigate("AddProducer", {
+              refreshData: this.refresh
+            })
+          }
+        >
           <Icon name="md-add" />
         </ActionButton>
       </View>

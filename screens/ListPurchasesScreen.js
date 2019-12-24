@@ -29,22 +29,24 @@ export default class ListPurchasesScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView >
+        <ScrollView>
           <FlatList
             data={this.state.purchases}
             renderItem={this.renderItem}
             keyExtractor={(item, index) => index.toString()}
             onRefresh={this.refresh}
             refreshing={this.state.refreshing}
-            />
+          />
         </ScrollView>
         <ActionButton
           buttonColor="#e74c3c"
-          onPress={() => this.props.navigation.navigate("AddPurchase", {
-            products: this.props.navigation.state.params.products,
-            refreshData: this.refresh
-          })}
-          >
+          onPress={() =>
+            this.props.navigation.navigate("AddPurchase", {
+              products: this.props.navigation.state.params.products,
+              refreshData: this.refresh
+            })
+          }
+        >
           <Icon name="md-add" />
         </ActionButton>
       </View>

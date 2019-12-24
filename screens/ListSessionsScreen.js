@@ -40,12 +40,14 @@ export default class ListSessionsScreen extends React.Component {
         </ScrollView>
         <ActionButton
           buttonColor="#e74c3c"
-          onPress={() => this.props.navigation.navigate("AddSession", {
-            products: this.props.navigation.state.params.products,
-            purchases: this.props.navigation.state.params.purchases,
-            refreshData: this.refresh
-          })}
-          >
+          onPress={() =>
+            this.props.navigation.navigate("AddSession", {
+              products: this.props.navigation.state.params.products,
+              purchases: this.props.navigation.state.params.purchases,
+              refreshData: this.refresh
+            })
+          }
+        >
           <Icon name="md-add" />
         </ActionButton>
       </View>

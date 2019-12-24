@@ -4,7 +4,6 @@ import { ListItem } from "react-native-elements";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/Ionicons";
 
-
 export default class ListProductsScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -32,12 +31,14 @@ export default class ListProductsScreen extends React.Component {
         </ScrollView>
         <ActionButton
           buttonColor="#e74c3c"
-          onPress={() => this.props.navigation.navigate("AddProduct", {
-            producers: this.props.navigation.state.params.producers,
-            strains: this.props.navigation.state.params.strains,
-            refreshData: this.refresh
-          })}
-          >
+          onPress={() =>
+            this.props.navigation.navigate("AddProduct", {
+              producers: this.props.navigation.state.params.producers,
+              strains: this.props.navigation.state.params.strains,
+              refreshData: this.refresh
+            })
+          }
+        >
           <Icon name="md-add" />
         </ActionButton>
       </View>
