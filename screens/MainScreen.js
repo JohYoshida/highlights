@@ -41,8 +41,6 @@ export default class MainScreen extends React.Component {
         </View>
       );
     } else {
-      const { producers, products, purchases, strains, sessions } = this.state;
-
       return (
         <View style={styles.container}>
           <Text h1 style={styles.text}>highlights</Text>
