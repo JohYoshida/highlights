@@ -66,6 +66,7 @@ export default class AddSessionScreen extends React.Component {
       .then(res => res.json())
       .then(json => {
         console.log(json);
+        this.props.navigation.state.params.refreshData();
         this.props.navigation.goBack();
       })
       .catch(err => {

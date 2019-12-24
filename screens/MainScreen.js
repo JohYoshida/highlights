@@ -160,6 +160,7 @@ export default class MainScreen extends React.Component {
                   this.props.navigation.navigate("ListSessions", {
                     sessions: data.sessions,
                     products: data.products,
+                    purchases: data.purchases,
                     refreshData: this.fetchData
                   });
                 });
