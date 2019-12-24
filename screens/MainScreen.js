@@ -52,7 +52,7 @@ export default class MainScreen extends React.Component {
               buttonColor="#1abc9c"
               title="List Producers"
               onPress={() => {
-                this.fetchProducers().then(() => {
+                this.fetchProducers().then(producers => {
                   this.props.navigation.navigate("ListProducers", {
                     producers,
                     refreshData: this.fetchProducers
