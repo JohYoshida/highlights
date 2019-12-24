@@ -124,9 +124,11 @@ export default class MainScreen extends React.Component {
               buttonColor="#2cbb1a"
               title="List Products"
               onPress={() => {
-                this.fetchProducts().then(products => {
+                this.fetchData().then(data => {
                   this.props.navigation.navigate("ListProducts", {
-                    products,
+                    products: data.products,
+                    producers: data.producers,
+                    strains: data.strains,
                     refreshData: this.fetchProducts
                   });
                 });
