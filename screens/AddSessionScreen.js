@@ -16,7 +16,7 @@ export default class AddSessionScreen extends React.Component {
     super(props);
     this.state = {
       purchase_id: "",
-      rating: "0"
+      rating: 3
     };
   }
 
@@ -24,7 +24,6 @@ export default class AddSessionScreen extends React.Component {
     const { products, purchases } = this.props.navigation.state.params;
     // Make picker items
     const Purchases = [];
-    // const product = purchases.find(({ id }) => id === purchase_id);
     purchases.forEach(purchase => {
       let time = moment(purchase.createdAt).format("MMM D YYYY");
       let product = products.find(({ id }) => id === purchase.product_id);
