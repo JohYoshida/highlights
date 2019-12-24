@@ -71,7 +71,7 @@ export default class MainScreen extends React.Component {
                     products: data.products,
                     producers: data.producers,
                     strains: data.strains,
-                    refreshData: this.fetchProducts
+                    refreshData: this.fetchData
                   });
                 });
               }}
