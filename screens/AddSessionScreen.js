@@ -15,7 +15,7 @@ export default class AddSessionScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      purchase: "",
+      purchase_id: "",
       rating: "0"
     };
   }
@@ -24,12 +24,11 @@ export default class AddSessionScreen extends React.Component {
     const { products, purchases } = this.props.navigation.state.params;
     // Make picker items
     const Purchases = [];
+    // const product = purchases.find(({ id }) => id === purchase_id);
     purchases.forEach(purchase => {
       let time = moment(purchase.createdAt).format("MMM D YYYY");
-      let name;
-      products.forEach(product => {
-        if (product.id === purchase.product_id) name = product.name;
-      });
+      let product = products.find(({ id }) => id === purchase.product_id)
+      let name = product.name;
       Purchases.push({
         label: time + " - " + name,
         value: purchase.id
@@ -40,17 +39,16 @@ export default class AddSessionScreen extends React.Component {
         <Dropdown
           label="Product"
           data={Purchases}
-          value={this.state.purchase}
+          value={this.state.purchase_id}
           containerStyle={styles.dropdown}
           onChangeText={value => {
-            this.setState({ purchase: value });
+            this.setState({ purchase_id: value });
           }}
         />
         <AirbnbRating
           startingValue={3}
           showRating={false}
           onFinishRating={rating => {
-            console.log(rating);
             this.setState({ rating });
           }}
         />
@@ -60,8 +58,10 @@ export default class AddSessionScreen extends React.Component {
   }
 
   post() {
-    const { purchase, rating } = this.state;
-    fetch(`${URL}/sessions/${purchase}/${rating}`, {
+    const { purchase_id, rating } = this.state;
+    const { products, purchases } = this.props.navigation.state.params;
+    const purchase = purchases.find(({ id }) => id === purchase_id);
+    fetch(`${URL}/sessions/${purchase_id}/${purchase.product_id}/${rating}`, {
       method: "POST"
     })
       .then(res => res.json())
