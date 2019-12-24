@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Picker,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View
-} from "react-native";
-import { Button, Input } from 'react-native-elements'
-import { Dropdown } from "react-native-material-dropdown"
+import { Picker, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Button, Input } from "react-native-elements";
+import { Dropdown } from "react-native-material-dropdown";
 
 const { URL } = require("../constants/EnvironmentVariables");
 
@@ -46,7 +40,7 @@ export default class AddProductScreen extends React.Component {
           data={Producers}
           value={this.state.producer_id}
           containerStyle={styles.dropdown}
-          onChangeText={(value)=> {
+          onChangeText={value => {
             this.setState({ producer_id: value });
           }}
         />
@@ -55,7 +49,7 @@ export default class AddProductScreen extends React.Component {
           data={Strains}
           value={this.state.strain_id}
           containerStyle={styles.dropdown}
-          onChangeText={(value)=> {
+          onChangeText={value => {
             this.setState({ strain_id: value });
           }}
         />
@@ -98,6 +92,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   dropdown: {
-    width: "80%",
+    width: "80%"
   }
 });

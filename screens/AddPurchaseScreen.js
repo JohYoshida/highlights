@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Button, ButtonGroup } from 'react-native-elements'
-import { Dropdown } from "react-native-material-dropdown"
+import { Button, ButtonGroup } from "react-native-elements";
+import { Dropdown } from "react-native-material-dropdown";
 
 const { URL } = require("../constants/EnvironmentVariables");
 
@@ -35,7 +35,7 @@ export default class AddPurchaseScreen extends React.Component {
       Strains.push({
         label: item.name + " - " + item.type,
         value: item.id
-      })
+      });
     });
 
     // Amount
@@ -83,7 +83,7 @@ export default class AddPurchaseScreen extends React.Component {
             data={Producers}
             value={this.state.producer}
             containerStyle={styles.dropdown}
-            onChangeText={(value)=> {
+            onChangeText={value => {
               this.setState({ producer: value });
             }}
           />
@@ -93,7 +93,7 @@ export default class AddPurchaseScreen extends React.Component {
             data={Strains}
             value={this.state.strain}
             containerStyle={styles.dropdown}
-            onChangeText={(value)=> {
+            onChangeText={value => {
               this.setState({ strain: value });
             }}
           />

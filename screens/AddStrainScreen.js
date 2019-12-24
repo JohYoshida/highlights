@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View
-} from "react-native";
-import { Button, ButtonGroup, Input } from 'react-native-elements'
-import { Dropdown } from "react-native-material-dropdown"
-
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, ButtonGroup, Input } from "react-native-elements";
+import { Dropdown } from "react-native-material-dropdown";
 
 const { URL } = require("../constants/EnvironmentVariables");
 

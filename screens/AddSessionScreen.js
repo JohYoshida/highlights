@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, AirbnbRating } from 'react-native-elements'
-import { Dropdown } from "react-native-material-dropdown"
+import { Button, AirbnbRating } from "react-native-elements";
+import { Dropdown } from "react-native-material-dropdown";
 
 const { URL } = require("../constants/EnvironmentVariables");
 const moment = require("moment");
@@ -42,7 +42,7 @@ export default class AddSessionScreen extends React.Component {
           data={Purchases}
           value={this.state.purchase}
           containerStyle={styles.dropdown}
-          onChangeText={(value)=> {
+          onChangeText={value => {
             this.setState({ purchase: value });
           }}
         />
@@ -51,7 +51,7 @@ export default class AddSessionScreen extends React.Component {
           showRating={false}
           onFinishRating={rating => {
             console.log(rating);
-            this.setState({ rating })
+            this.setState({ rating });
           }}
         />
         <Button title="Add Purchase" onPress={this.post.bind(this)} />

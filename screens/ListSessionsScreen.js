@@ -30,7 +30,9 @@ function Item({ item }) {
   return (
     <View style={styles.item}>
       <Text style={styles.title}>{item.rating}</Text>
-      <Text style={styles.title}>{moment(item.createAt).format("MMM D YYYY")}</Text>
+      <Text style={styles.title}>
+        {moment(item.createAt).format("MMM D YYYY")}
+      </Text>
     </View>
   );
 }
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginHorizontal: 16
   },
   title: {
     fontSize: 15

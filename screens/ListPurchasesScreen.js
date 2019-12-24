@@ -33,7 +33,9 @@ function Item({ item }) {
       <Text style={styles.title}>{item.density}</Text>
       <Text style={styles.title}>{item.size}</Text>
       <Text style={styles.title}>{item.amount}</Text>
-      <Text style={styles.title}>{moment(item.createdAt).format("MMM D YYYY")}</Text>
+      <Text style={styles.title}>
+        {moment(item.createdAt).format("MMM D YYYY")}
+      </Text>
     </View>
   );
 }
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginHorizontal: 16
   },
   title: {
     fontSize: 15
