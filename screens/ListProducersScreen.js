@@ -39,7 +39,7 @@ export default class ListProducersScreen extends React.Component {
         this.setState({ refreshing: false, producers: data });
       });
     });
-  }
+  };
 }
 
 const styles = StyleSheet.create({

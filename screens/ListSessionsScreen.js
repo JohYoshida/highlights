@@ -65,13 +65,14 @@ export default class ListSessionsScreen extends React.Component {
         // Cross-reference name
         sessions.forEach(session => {
           products.forEach(product => {
-            if (session.product_id === product.id) session.strain = product.name;
+            if (session.product_id === product.id)
+              session.strain = product.name;
           });
         });
         this.setState({ refreshing: false, sessions });
       });
     });
-  }
+  };
 }
 
 const styles = StyleSheet.create({

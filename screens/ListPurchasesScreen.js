@@ -79,13 +79,14 @@ export default class ListPurchasesScreen extends React.Component {
         // Cross-reference name
         purchases.forEach(purchase => {
           products.forEach(product => {
-            if (purchase.product_id === product.id) purchase.name = product.name;
+            if (purchase.product_id === product.id)
+              purchase.name = product.name;
           });
         });
         this.setState({ refreshing: false, purchases });
       });
     });
-  }
+  };
 }
 
 const styles = StyleSheet.create({

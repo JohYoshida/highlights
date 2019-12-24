@@ -39,7 +39,7 @@ export default class ListProductsScreen extends React.Component {
         this.setState({ refreshing: false, products: data });
       });
     });
-  }
+  };
 }
 
 const styles = StyleSheet.create({

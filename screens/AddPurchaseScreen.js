@@ -30,7 +30,7 @@ export default class AddPurchaseScreen extends React.Component {
     const Products = [];
     products.forEach(item => {
       Products.push({ label: item.name, value: item.id });
-    })
+    });
 
     // Amount
     let component1 = () => <Text>Gram</Text>;
@@ -118,7 +118,15 @@ export default class AddPurchaseScreen extends React.Component {
 
   post() {
     const { products } = this.props.navigation.state.params;
-    let { producer, product, strain, amount, size, moisture, density } = this.state;
+    let {
+      producer,
+      product,
+      strain,
+      amount,
+      size,
+      moisture,
+      density
+    } = this.state;
     if (amount === 0) amount = "Gram";
     if (amount === 1) amount = "Eight";
     if (amount === 2) amount = "Quarter";

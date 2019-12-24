@@ -40,7 +40,7 @@ export default class ListStrainsScreen extends React.Component {
         this.setState({ refreshing: false, strains: data });
       });
     });
-  }
+  };
 }
 
 const styles = StyleSheet.create({
