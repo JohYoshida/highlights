@@ -1,12 +1,12 @@
 import React from "react";
 import {
   ActivityIndicator,
-  Button,
   StyleSheet,
   ProgressBarAndroid,
   Text,
   View
 } from "react-native";
+import { Button } from "react-native-elements";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -46,39 +46,57 @@ export default class MainScreen extends React.Component {
 
       return (
         <View style={styles.container}>
-          <Button title="Refresh Data" onPress={this.refreshData.bind(this)} />
-          <Button
-            title="List Producers"
-            onPress={() => {
-              this.props.navigation.navigate("ListProducers", { producers });
-            }}
-          />
-          <Button
-            title="List Products"
-            onPress={() => {
-              this.props.navigation.navigate("ListProducts", { products });
-            }}
-          />
-          <Button
-            title="List Purchases"
-            onPress={() => {
-              this.props.navigation.navigate("ListPurchases", { purchases });
-            }}
-          />
-          <Button
-            title="List Sessions"
-            onPress={() => {
-              this.props.navigation.navigate("ListSessions", { sessions });
-            }}
-          />
-          <Button
-            title="List Strains"
-            onPress={() => {
-              this.props.navigation.navigate("ListStrains", {
-                strains
-              });
-            }}
-          />
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Refresh Data"
+              onPress={this.refreshData.bind(this)}
+              style={styles.button}
+            />
+            <Button
+              title="List Producers"
+              onPress={() => {
+                this.props.navigation.navigate("ListProducers", { producers });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="List Products"
+              onPress={() => {
+                this.props.navigation.navigate("ListProducts", { products });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="List Purchases"
+              onPress={() => {
+                this.props.navigation.navigate("ListPurchases", {
+                  purchases,
+                  products
+                });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="List Sessions"
+              onPress={() => {
+                this.props.navigation.navigate("ListSessions", {
+                  sessions,
+                  purchases,
+                  products
+                });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="List Strains"
+              onPress={() => {
+                this.props.navigation.navigate("ListStrains", {
+                  strains
+                });
+              }}
+              style={styles.button}
+            />
+          </View>
 
           <ActionButton buttonColor="#e74c3c">
             <ActionButton.Item
@@ -273,7 +291,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 30,
+    alignItems: "center",
     backgroundColor: "#fcfcfc"
+  },
+  buttonContainer: {
+    flex: 1,
+    width: "80%"
+  },
+  button: {
+    marginBottom: 5
   },
   actionButtonIcon: {
     fontSize: 20,
