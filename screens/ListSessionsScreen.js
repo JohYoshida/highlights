@@ -44,7 +44,7 @@ export default class ListSessionsScreen extends React.Component {
       title={item.strain}
       subtitle={
         <View style={styles.iconContainer}>
-          <Text>{moment(item.createAt).format("MMM D YYYY h:mma")}</Text>
+          <Text>{moment(item.createdAt).format("MMM D YYYY h:mma")}</Text>
           <AirbnbRating
             defaultRating={item.rating}
             readonly
