@@ -3,10 +3,9 @@ import {
   ActivityIndicator,
   StyleSheet,
   ProgressBarAndroid,
-  Text,
   View
 } from "react-native";
-import { Button } from "react-native-elements";
+import { Button, Text } from "react-native-elements";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -46,6 +45,8 @@ export default class MainScreen extends React.Component {
 
       return (
         <View style={styles.container}>
+          <Text h1 style={styles.text}>highlights</Text>
+
           <ActionButton buttonColor="#e74c3c">
             <ActionButton.Item
               buttonColor="#1abc9c"
@@ -257,8 +258,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fcfcfc"
   },
-  button: {
-    marginBottom: 5
+  text: {
+    color: "#3ec11d"
   },
   actionButtonIcon: {
     fontSize: 20,
