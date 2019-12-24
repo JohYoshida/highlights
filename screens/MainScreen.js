@@ -46,65 +46,6 @@ export default class MainScreen extends React.Component {
 
       return (
         <View style={styles.container}>
-          <View style={styles.buttonContainer}>
-            <Button
-              title="Refresh Data"
-              onPress={this.refreshData.bind(this)}
-              style={styles.button}
-            />
-            <Button
-              title="Add Producer"
-              onPress={() => {
-                this.props.navigation.navigate("AddProducer");
-              }}
-              style={styles.button}
-            />
-            <Button
-              title="Add Product"
-              onPress={() => {
-                this.fetchData().then(data => {
-                  this.props.navigation.navigate("AddProduct", {
-                    producers: data.producers,
-                    strains: data.strains
-                  });
-                });
-              }}
-              style={styles.button}
-            />
-            <Button
-              title="Add Purchase"
-              onPress={() => {
-                this.fetchData().then(data => {
-                  this.props.navigation.navigate("AddPurchase", {
-                    producers: data.producers,
-                    products: data.products,
-                    strains: data.strains
-                  });
-                });
-              }}
-              style={styles.button}
-            />
-            <Button
-              title="Add Session"
-              onPress={() => {
-                this.fetchData().then(data => {
-                  this.props.navigation.navigate("AddSession", {
-                    products: data.products,
-                    purchases: data.purchases
-                  });
-                });
-              }}
-              style={styles.button}
-            />
-            <Button
-              title="Add Strain"
-              onPress={() => {
-                this.props.navigation.navigate("AddStrain");
-              }}
-              style={styles.button}
-            />
-          </View>
-
           <ActionButton buttonColor="#e74c3c">
             <ActionButton.Item
               buttonColor="#1abc9c"
@@ -315,10 +256,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     alignItems: "center",
     backgroundColor: "#fcfcfc"
-  },
-  buttonContainer: {
-    flex: 1,
-    width: "80%"
   },
   button: {
     marginBottom: 5
