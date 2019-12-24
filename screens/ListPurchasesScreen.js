@@ -12,10 +12,6 @@ export default class ListPurchasesScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  render() {
     const { purchases, products } = this.props.navigation.state.params;
     // Cross-reference name
     purchases.forEach(purchase => {
@@ -23,12 +19,21 @@ export default class ListPurchasesScreen extends React.Component {
         if (purchase.product_id === product.id) purchase.name = product.name;
       });
     });
+    this.state = {
+      purchases,
+      refreshing: false
+    };
+  }
+
+  render() {
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={purchases}
+          data={this.state.purchases}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
+          onRefresh={this.refresh}
+          refreshing={this.state.refreshing}
         />
       </ScrollView>
     );
@@ -66,6 +71,21 @@ export default class ListPurchasesScreen extends React.Component {
       }
     />
   );
+
+  refresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.navigation.state.params.refreshData().then(data => {
+        const { purchases, products } = data;
+        // Cross-reference name
+        purchases.forEach(purchase => {
+          products.forEach(product => {
+            if (purchase.product_id === product.id) purchase.name = product.name;
+          });
+        });
+        this.setState({ refreshing: false, purchases });
+      });
+    });
+  }
 }
 
 const styles = StyleSheet.create({

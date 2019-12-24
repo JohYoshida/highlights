@@ -11,26 +11,29 @@ export default class ListSessionsScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  render() {
-    const {
-      sessions,
-      purchases,
-      products
-    } = this.props.navigation.state.params;
+    const { sessions, products } = this.props.navigation.state.params;
+    // Cross-reference name
     sessions.forEach(session => {
       products.forEach(product => {
         if (session.product_id === product.id) session.strain = product.name;
       });
     });
+    this.state = {
+      sessions,
+      refreshing: false
+    };
+  }
+
+  render() {
+    console.log(this.state.sessions);
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={sessions}
+          data={this.state.sessions}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
+          onRefresh={this.refresh}
+          refreshing={this.state.refreshing}
         />
       </ScrollView>
     );
@@ -43,7 +46,7 @@ export default class ListSessionsScreen extends React.Component {
         <View style={styles.iconContainer}>
           <Text>{moment(item.createAt).format("MMM D YYYY h:mma")}</Text>
           <AirbnbRating
-            startingValue={item.rating}
+            defaultRating={item.rating}
             readonly
             showRating={false}
             size={12}
@@ -54,6 +57,21 @@ export default class ListSessionsScreen extends React.Component {
       chevron
     />
   );
+
+  refresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.navigation.state.params.refreshData().then(data => {
+        const { sessions, products } = data;
+        // Cross-reference name
+        sessions.forEach(session => {
+          products.forEach(product => {
+            if (session.product_id === product.id) session.strain = product.name;
+          });
+        });
+        this.setState({ refreshing: false, sessions });
+      });
+    });
+  }
 }
 
 const styles = StyleSheet.create({

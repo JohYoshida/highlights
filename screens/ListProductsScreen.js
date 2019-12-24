@@ -9,16 +9,21 @@ export default class ListProductsScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      products: this.props.navigation.state.params.products,
+      refreshing: false
+    };
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={this.props.navigation.state.params.products}
+          data={this.state.products}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
+          onRefresh={this.refresh}
+          refreshing={this.state.refreshing}
         />
       </ScrollView>
     );
@@ -27,6 +32,14 @@ export default class ListProductsScreen extends React.Component {
   renderItem = ({ item }) => (
     <ListItem title={item.name} bottomDivider chevron />
   );
+
+  refresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.navigation.state.params.refreshData().then(data => {
+        this.setState({ refreshing: false, products: data });
+      });
+    });
+  }
 }
 
 const styles = StyleSheet.create({

@@ -9,16 +9,21 @@ export default class ListProducersScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      producers: this.props.navigation.state.params.producers,
+      refreshing: false
+    };
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <FlatList
-          data={this.props.navigation.state.params.producers}
+          data={this.state.producers}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
+          onRefresh={this.refresh}
+          refreshing={this.state.refreshing}
         />
       </ScrollView>
     );
@@ -27,6 +32,14 @@ export default class ListProducersScreen extends React.Component {
   renderItem = ({ item }) => (
     <ListItem title={item.name} bottomDivider chevron />
   );
+
+  refresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.navigation.state.params.refreshData().then(data => {
+        this.setState({ refreshing: false, producers: data });
+      });
+    });
+  }
 }
 
 const styles = StyleSheet.create({

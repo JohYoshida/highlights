@@ -9,17 +9,22 @@ export default class ListStrainsScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      strains: this.props.navigation.state.params.strains,
+      refreshing: false
+    };
   }
 
   render() {
-    const { strains, purchases, products } = this.props.navigation.state.params;
+    const { strains } = this.state;
     return (
       <ScrollView style={styles.container}>
         <FlatList
           data={strains}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
+          onRefresh={this.refresh}
+          refreshing={this.state.refreshing}
         />
       </ScrollView>
     );
@@ -28,15 +33,14 @@ export default class ListStrainsScreen extends React.Component {
   renderItem = ({ item }) => (
     <ListItem title={item.name} subtitle={item.type} bottomDivider chevron />
   );
-}
 
-function Item({ item }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{item.name}</Text>
-      <Text style={styles.title}>{item.type}</Text>
-    </View>
-  );
+  refresh = () => {
+    this.setState({ refreshing: true }, () => {
+      this.props.navigation.state.params.refreshData().then(data => {
+        this.setState({ refreshing: false, strains: data });
+      });
+    });
+  }
 }
 
 const styles = StyleSheet.create({
