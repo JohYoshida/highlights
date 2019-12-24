@@ -16,6 +16,7 @@ export default class AddPurchaseScreen extends React.Component {
     this.state = {
       strain: "",
       producer: "",
+      product: "",
       amount: -1,
       size: -1,
       moisture: -1,
@@ -24,19 +25,12 @@ export default class AddPurchaseScreen extends React.Component {
   }
 
   render() {
-    const { producers, strains } = this.props.navigation.state.params;
+    const { products } = this.props.navigation.state.params;
     // Make picker items
-    const Producers = [];
-    producers.forEach(item => {
-      Producers.push({ label: item.name, value: item.id });
-    });
-    const Strains = [];
-    strains.forEach(item => {
-      Strains.push({
-        label: item.name + " - " + item.type,
-        value: item.id
-      });
-    });
+    const Products = [];
+    products.forEach(item => {
+      Products.push({ label: item.name, value: item.id });
+    })
 
     // Amount
     let component1 = () => <Text>Gram</Text>;
@@ -79,22 +73,12 @@ export default class AddPurchaseScreen extends React.Component {
       <ScrollView>
         <View style={styles.container}>
           <Dropdown
-            label="Producer"
-            data={Producers}
-            value={this.state.producer}
+            label="Product"
+            data={Products}
+            value={this.state.product}
             containerStyle={styles.dropdown}
             onChangeText={value => {
-              this.setState({ producer: value });
-            }}
-          />
-
-          <Dropdown
-            label="Strain"
-            data={Strains}
-            value={this.state.strain}
-            containerStyle={styles.dropdown}
-            onChangeText={value => {
-              this.setState({ strain: value });
+              this.setState({ product: value });
             }}
           />
           <Text>Amount</Text>
@@ -134,15 +118,7 @@ export default class AddPurchaseScreen extends React.Component {
 
   post() {
     const { products } = this.props.navigation.state.params;
-    let { producer, strain, amount, size, moisture, density } = this.state;
-    let product_id;
-    products.forEach(item => {
-      if (item.producer_id === producer) {
-        if (item.strain_id === strain) {
-          product_id = item.id;
-        }
-      }
-    });
+    let { producer, product, strain, amount, size, moisture, density } = this.state;
     if (amount === 0) amount = "Gram";
     if (amount === 1) amount = "Eight";
     if (amount === 2) amount = "Quarter";
@@ -155,7 +131,7 @@ export default class AddPurchaseScreen extends React.Component {
     if (density === 0) density = "Dense";
     if (density === 1) density = "Average";
     if (density === 2) density = "Loose";
-    fetch(`${URL}/purchases/${product_id}`, {
+    fetch(`${URL}/purchases/${product}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
