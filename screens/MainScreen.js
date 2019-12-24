@@ -55,23 +55,36 @@ export default class MainScreen extends React.Component {
             <Button
               title="List Producers"
               onPress={() => {
-                this.props.navigation.navigate("ListProducers", { producers });
+                this.fetchProducers().then(() => {
+                  this.props.navigation.navigate("ListProducers", {
+                    producers,
+                    refreshData: this.fetchProducers
+                  });
+                });
               }}
               style={styles.button}
             />
             <Button
               title="List Products"
               onPress={() => {
-                this.props.navigation.navigate("ListProducts", { products });
+                this.fetchProducts().then(products => {
+                  this.props.navigation.navigate("ListProducts", {
+                    products,
+                    refreshData: this.fetchProducts
+                  });
+                });
               }}
               style={styles.button}
             />
             <Button
               title="List Purchases"
               onPress={() => {
-                this.props.navigation.navigate("ListPurchases", {
-                  purchases,
-                  products
+                this.fetchData().then(data => {
+                  this.props.navigation.navigate("ListPurchases", {
+                    purchases: data.purchases,
+                    products: data.products,
+                    refreshData: this.fetchData
+                  });
                 });
               }}
               style={styles.button}
@@ -79,10 +92,12 @@ export default class MainScreen extends React.Component {
             <Button
               title="List Sessions"
               onPress={() => {
-                this.props.navigation.navigate("ListSessions", {
-                  sessions,
-                  purchases,
-                  products
+                this.fetchData().then(data => {
+                  this.props.navigation.navigate("ListSessions", {
+                    sessions: data.sessions,
+                    products: data.products,
+                    refreshData: this.fetchData
+                  });
                 });
               }}
               style={styles.button}
@@ -90,8 +105,11 @@ export default class MainScreen extends React.Component {
             <Button
               title="List Strains"
               onPress={() => {
-                this.props.navigation.navigate("ListStrains", {
-                  strains
+                this.fetchStrains().then(strains => {
+                  this.props.navigation.navigate("ListStrains", {
+                    strains,
+                    refreshData: this.fetchStrains
+                  });
                 });
               }}
               style={styles.button}
