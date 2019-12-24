@@ -66,9 +66,9 @@ export default class AddPurchaseScreen extends React.Component {
       { element: component9 }
     ];
     // Density
-    let component10 = () => <Text>Moist</Text>;
+    let component10 = () => <Text>Dense</Text>;
     let component11 = () => <Text>Average</Text>;
-    let component12 = () => <Text>Dry</Text>;
+    let component12 = () => <Text>Loose</Text>;
     const densityButtons = [
       { element: component10 },
       { element: component11 },
