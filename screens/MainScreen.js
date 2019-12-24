@@ -144,6 +144,7 @@ export default class MainScreen extends React.Component {
                   this.props.navigation.navigate("ListPurchases", {
                     purchases: data.purchases,
                     products: data.products,
+                    strains: data.strains,
                     refreshData: this.fetchData
                   });
                 });
