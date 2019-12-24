@@ -146,9 +146,9 @@ export default class AddPurchaseScreen extends React.Component {
     if (amount === 0) amount = "Gram";
     if (amount === 1) amount = "Eight";
     if (amount === 2) amount = "Quarter";
-    if (size === 0) size = "Gram";
-    if (size === 1) size = "Eight";
-    if (size === 2) size = "Quarter";
+    if (size === 0) size = "Small";
+    if (size === 1) size = "Medium";
+    if (size === 2) size = "Large";
     if (moisture === 0) moisture = "Moist";
     if (moisture === 1) moisture = "Average";
     if (moisture === 2) moisture = "Dry";
