@@ -33,8 +33,8 @@ export default class ListProductsScreen extends React.Component {
           buttonColor="#e74c3c"
           onPress={() =>
             this.props.navigation.navigate("AddProduct", {
-              producers: this.props.navigation.state.params.producers,
-              strains: this.props.navigation.state.params.strains,
+              producers: this.state.producers,
+              strains: this.state.strains,
               refreshData: this.refresh
             })
           }
