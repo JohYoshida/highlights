@@ -53,6 +53,61 @@ export default class MainScreen extends React.Component {
               style={styles.button}
             />
             <Button
+              title="Add Producer"
+              onPress={() => {
+                this.props.navigation.navigate("AddProducer");
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="Add Product"
+              onPress={() => {
+                this.fetchData().then(data => {
+                  this.props.navigation.navigate("AddProduct", {
+                    producers: data.producers,
+                    strains: data.strains
+                  });
+                });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="Add Purchase"
+              onPress={() => {
+                this.fetchData().then(data => {
+                  this.props.navigation.navigate("AddPurchase", {
+                    producers: data.producers,
+                    products: data.products,
+                    strains: data.strains
+                  });
+                });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="Add Session"
+              onPress={() => {
+                this.fetchData().then(data => {
+                  this.props.navigation.navigate("AddSession", {
+                    products: data.products,
+                    purchases: data.purchases
+                  });
+                });
+              }}
+              style={styles.button}
+            />
+            <Button
+              title="Add Strain"
+              onPress={() => {
+                this.props.navigation.navigate("AddStrain");
+              }}
+              style={styles.button}
+            />
+          </View>
+
+          <ActionButton buttonColor="#e74c3c">
+            <ActionButton.Item
+              buttonColor="#1abc9c"
               title="List Producers"
               onPress={() => {
                 this.fetchProducers().then(() => {
@@ -62,9 +117,11 @@ export default class MainScreen extends React.Component {
                   });
                 });
               }}
-              style={styles.button}
-            />
-            <Button
+            >
+              <Icon name="md-flask" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor="#2cbb1a"
               title="List Products"
               onPress={() => {
                 this.fetchProducts().then(products => {
@@ -74,9 +131,11 @@ export default class MainScreen extends React.Component {
                   });
                 });
               }}
-              style={styles.button}
-            />
-            <Button
+            >
+              <Icon name="md-cube" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor="#1a56bb"
               title="List Purchases"
               onPress={() => {
                 this.fetchData().then(data => {
@@ -87,9 +146,11 @@ export default class MainScreen extends React.Component {
                   });
                 });
               }}
-              style={styles.button}
-            />
-            <Button
+            >
+              <Icon name="md-done-all" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor="#9b59b6"
               title="List Sessions"
               onPress={() => {
                 this.fetchData().then(data => {
@@ -100,9 +161,11 @@ export default class MainScreen extends React.Component {
                   });
                 });
               }}
-              style={styles.button}
-            />
-            <Button
+            >
+              <Icon name="md-cloud-outline" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor="#3498db"
               title="List Strains"
               onPress={() => {
                 this.fetchStrains().then(strains => {
@@ -111,69 +174,6 @@ export default class MainScreen extends React.Component {
                     refreshData: this.fetchStrains
                   });
                 });
-              }}
-              style={styles.button}
-            />
-          </View>
-
-          <ActionButton buttonColor="#e74c3c">
-            <ActionButton.Item
-              buttonColor="#1abc9c"
-              title="Add Producer"
-              onPress={() => {
-                this.props.navigation.navigate("AddProducer");
-              }}
-            >
-              <Icon name="md-flask" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-            <ActionButton.Item
-              buttonColor="#2cbb1a"
-              title="Add Product"
-              onPress={() => {
-                this.refreshData().then(() => {
-                  this.props.navigation.navigate("AddProduct", {
-                    producers,
-                    strains
-                  });
-                });
-              }}
-            >
-              <Icon name="md-cube" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-            <ActionButton.Item
-              buttonColor="#1a56bb"
-              title="Add Purchase"
-              onPress={() => {
-                this.fetchData().then(() => {
-                  this.props.navigation.navigate("AddPurchase", {
-                    producers,
-                    products,
-                    strains
-                  });
-                });
-              }}
-            >
-              <Icon name="md-done-all" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-            <ActionButton.Item
-              buttonColor="#9b59b6"
-              title="Add Session"
-              onPress={() => {
-                this.fetchData().then(() => {
-                  this.props.navigation.navigate("AddSession", {
-                    products,
-                    purchases
-                  });
-                });
-              }}
-            >
-              <Icon name="md-cloud-outline" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-            <ActionButton.Item
-              buttonColor="#3498db"
-              title="Add Strain"
-              onPress={() => {
-                this.props.navigation.navigate("AddStrain");
               }}
             >
               <Icon name="md-leaf" style={styles.actionButtonIcon} />
