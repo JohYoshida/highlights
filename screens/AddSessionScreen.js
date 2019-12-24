@@ -45,7 +45,7 @@ export default class AddSessionScreen extends React.Component {
           }}
         />
         <AirbnbRating
-          startingValue={3}
+          defaultRating={3}
           showRating={false}
           onFinishRating={rating => {
             this.setState({ rating });
